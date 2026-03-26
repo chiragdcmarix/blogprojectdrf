@@ -3,24 +3,13 @@ set -e
 
 cd /home/ubuntu/blogprojectdrf
 
-sudo chown -R ubuntu:ubuntu .
-
 sudo apt-get update
+sudo apt-get install -y python3.10 python3.10-venv python3.10-dev build-essential
 
-sudo apt-get install -y \
-python3-dev \
-build-essential \
-libjpeg-dev \
-zlib1g-dev \
-libfreetype6-dev \
-liblcms2-dev \
-libwebp-dev \
-libtiff-dev \
-tk-dev \
-gcc
+rm -rf venv
+python3.10 -m venv venv
 
-python3 -m virtualenv venv
 source venv/bin/activate
 
-pip install --upgrade pip wheel setuptools
+pip install --upgrade pip setuptools wheel
 pip install -r requirements.txt
