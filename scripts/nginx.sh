@@ -1,13 +1,16 @@
+#!/usr/bin/env bash
+set -e
 
-#!/usr/bin/bash
+cd /home/ubuntu/blogprojectdrf
 
-sudo systemctl daemon-reload
+sudo cp nginx/nginx.conf /etc/nginx/sites-available/
+
+sudo ln -sf /etc/nginx/sites-available/nginx.conf \
+/etc/nginx/sites-enabled/nginx.conf
+
 sudo rm -f /etc/nginx/sites-enabled/default
 
-sudo cp /root/blogprojectdrf/nginx/nginx.conf /etc/nginx/sites-available/fodler_name_where_seetngs.py_is
-sudo ln -s /etc/nginx/sites-available/fodler_name_where_seetngs.py_is /etc/nginx/sites-enabled/
-#sudo ln -s /etc/nginx/sites-available/blog /etc/nginx/sites-enabled
-#sudo nginx -t
-sudo gpasswd -a www-data ubuntu
-sudo systemctl restart nginx
+sudo usermod -a -G ubuntu www-data
 
+sudo nginx -t
+sudo systemctl restart nginx
