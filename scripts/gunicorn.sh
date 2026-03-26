@@ -1,6 +1,11 @@
-#!/usr/bin/bash
-sudo cp /root/blogprojectdrfgunicorn/gunicorn.socket  /etc/systemd/system/gunicorn.socket
-sudo cp /root/blogprojectdrf/gunicorn/gunicorn.service  /etc/systemd/system/gunicorn.service
+#!/usr/bin/env bash
+set -e
 
-sudo systemctl start gunicorn.service
-sudo systemctl enable gunicorn.service
+cd /home/ubuntu/blogprojectdrf
+
+sudo cp gunicorn/gunicorn.socket /etc/systemd/system/
+sudo cp gunicorn/gunicorn.service /etc/systemd/system/
+
+sudo systemctl daemon-reload
+sudo systemctl start gunicorn
+sudo systemctl enable gunicorn
