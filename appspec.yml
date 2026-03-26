@@ -2,16 +2,19 @@ version: 0.0
 os: linux
 files: 
   - source: /
-    destination: /root/blogprojectdrf
+    destination: /home/ubuntu/blogprojectdrf
+
 permissions:
-  - object: /root/blogprojectdrf
+  - object: /home/ubuntu/blogprojectdrf
     owner: ubuntu
     group: ubuntu
+
 hooks:
   BeforeInstall:
       - location: scripts/clean_instance.sh
         timeout: 300
         runas: ubuntu
+
   AfterInstall:
       - location: scripts/instance_os_dependencies.sh
         timeout: 300
@@ -25,13 +28,13 @@ hooks:
       - location: scripts/nginx.sh
         timeout: 300
         runas: ubuntu
+
   ApplicationStop:
       - location: scripts/stop_app.sh
         timeout: 300
         runas: ubuntu
+
   ApplicationStart:
       - location: scripts/start_app.sh
         timeout: 300
         runas: ubuntu
-  
-  
