@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
+set -e
 
-sudo chown -R ubuntu:ubuntu ~/Project_folder_name
-virtualenv /home/ubuntu/Project_folder_name/venv
-source /home/ubuntu/Project_folder_name/venv/bin/activate
-pip install -r /home/ubuntu/Project_folder_name/requirements.txt
+cd /home/ubuntu/blogprojectdrf
+
+sudo chown -R ubuntu:ubuntu .
+
+python3 -m virtualenv venv
+source venv/bin/activate
+
+pip install --upgrade pip
+pip install -r requirements.txt
